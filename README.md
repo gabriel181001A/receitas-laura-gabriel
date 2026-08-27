@@ -34,6 +34,7 @@ O app acha o yt-dlp sozinho, mesmo que o pip instale fora do PATH — ele tenta
 | `npm start` | Sobe o servidor |
 | `npm run dev` | Sobe com recarga automática ao salvar |
 | `node test-api.mjs` | Testa a API inteira (47 verificações) |
+| `node test-photos.mjs` | Testa upload, redimensionamento e capa (16 verificações) |
 | `node seed.mjs` | Enche o banco com 6 receitas de exemplo |
 | `bash dev-restart.sh` | Reinicia o servidor |
 | `RESET=1 bash dev-restart.sh` | Reinicia zerando o banco |
