@@ -1,0 +1,9 @@
+node_modules
+data
+.env
+.git
+*.md
+test-*.mjs
+seed.mjs
+make-icons.mjs
+dev-restart.sh

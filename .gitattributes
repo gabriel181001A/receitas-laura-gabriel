@@ -1,0 +1,3 @@
+# O contêiner roda Linux: forçar LF evita script quebrado por CRLF do Windows.
+* text=auto eol=lf
+*.png binary

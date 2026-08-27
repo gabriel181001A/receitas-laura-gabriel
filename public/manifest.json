@@ -1,0 +1,31 @@
+{
+  "name": "Receitas · Laura & Gabriel",
+  "short_name": "Receitas",
+  "description": "O caderno de receitas da casa",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1E9DA",
+  "theme_color": "#F1E9DA",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Adicionar receita", "url": "/#/adicionar" },
+    { "name": "Lista de compras",  "url": "/#/lista" },
+    { "name": "Planejador",        "url": "/#/planejador" }
+  ]
+}
