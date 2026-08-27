@@ -182,10 +182,17 @@ com a receita aberta no computador.
 
 ## Design
 
-Bege de cozinha: papel cru (`#F1E9DA`) com oliva de horta (`#5C6B39`) nas ações
-e âmbar de crosta de pão (`#C07C22`) nos destaques. Títulos em Fraunces,
-interface em Manrope. Um motivo de ladrilho aparece só no ícone, na tela de
-entrada e nos estados vazios.
+Pêssego `#FFDFC4` — a cor escolhida — é a página. Tudo o mais deriva dela:
+os cartões sobem para creme (`#FFF6EE`), a tinta desce para cacau (`#3B2517`),
+as ações usam o mesmo tom em terracota fundo (`#A9502C`) e os favoritos ganham
+ouro velho (`#B8832A`). Um verde de erva (`#5F7A46`) marca o que já foi feito,
+para não se confundir com os botões.
+
+Títulos em Fraunces, interface em Manrope. Um motivo de ladrilho aparece só no
+ícone, na tela de entrada e nos estados vazios.
+
+No escuro o pêssego volta como cor do texto sobre cacau, então a mesma cor
+aparece nos dois temas. Todos os pares de texto passam em 4.5:1 ou mais.
 
 Os cards são 3:4 — a proporção do vídeo vertical de onde as receitas vêm.
 

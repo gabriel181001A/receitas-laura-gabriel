@@ -57,7 +57,7 @@ MODO DE PREPARO:
 
 Rende 4 porcoes
 #strogonoff #jantarrapido #frango`,
-    photo: ['#A6512F', '#6E3018'],
+    photo: ['#A9502C', '#6B2E16'],
     rating: 5, favorite: true,
   },
   {
@@ -85,7 +85,7 @@ MODO DE PREPARO:
 
 Rende 12 porcoes
 #bolo #bolodecenoura #sobremesa`,
-    photo: ['#C08A34', '#8A5A18'],
+    photo: ['#C68B3A', '#8E5A1C'],
     rating: 5, favorite: true,
   },
   {
@@ -103,7 +103,7 @@ Doure o alho no azeite em fogo baixo, com muito cuidado pra nao queimar.
 Misture tudo com um pouco da agua do cozimento e finalize com salsinha.
 
 #macarrao #jantarrapido #massas`,
-    photo: ['#5C6B39', '#3A4522'],
+    photo: ['#5F7A46', '#3B4E2A'],
     rating: 4,
   },
   {
@@ -126,7 +126,7 @@ MODO DE PREPARO:
 
 Rende 6 unidades
 #fit #panqueca #cafedamanha #lowcarb`,
-    photo: ['#C9A263', '#94703A'],
+    photo: ['#D2A467', '#9A713C'],
     rating: 4,
   },
   {
@@ -150,7 +150,7 @@ MODO DE PREPARO:
 
 Rende 4 porcoes
 #salada #vegetariano #almoco`,
-    photo: ['#6E7F41', '#454F26'],
+    photo: ['#778A4E', '#4A582C'],
     rating: 3,
   },
   {
@@ -173,7 +173,7 @@ MODO DE PREPARO:
 
 Rende 6 porcoes
 #sopa #jantar #vegano`,
-    photo: ['#BE7B2C', '#7E4A18'],
+    photo: ['#C67F30', '#84491A'],
   },
 ];
 
