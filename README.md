@@ -63,36 +63,52 @@ seu PC. Funciona de qualquer lugar, mas o PC continua tendo que estar ligado.
 cloudflared tunnel --url http://localhost:3000
 ```
 
-### 3. Nuvem — funciona sempre, independente do seu PC
+### 3. Nuvem (Fly.io) — funciona sempre, independente do seu PC
 
-É o caminho definitivo. Duas peças: onde o app roda e onde os dados ficam.
+O caminho definitivo. O `flyctl` já está instalado nesta máquina e o código já
+está no GitHub. **Não precisa de banco externo:** o Fly monta um disco
+persistente em `/data` e o SQLite mora lá, sobrevivendo a cada novo deploy.
 
-**Banco de dados (Turso, grátis e permanente).** Hospedagem gratuita costuma
-apagar o disco a cada atualização; o Turso guarda o banco fora do servidor.
-Crie a conta em [turso.tech](https://turso.tech), crie um banco e copie a URL
-(`libsql://…`) e o token.
+Estes comandos precisam de você — o login abre o navegador e a conta é sua:
 
-**O app.** Este repositório já traz `Dockerfile`, `render.yaml` e `fly.toml`.
+```bash
+# 1. Entrar (ou criar a conta). Pede cartão, mesmo no uso mínimo.
+flyctl auth login
 
-| | Render (plano grátis) | Fly.io |
-|---|---|---|
-| Custo | Grátis | Grátis dentro da franquia, mas pede cartão |
-| Configuração | Mais simples | Precisa da CLI `flyctl` |
-| **Ao abrir depois de horas parado** | **~50 s de espera** | **1–3 s** |
-| Servidor no Brasil | Não | Sim (`gru`, São Paulo) |
+# 2. Criar o app sem subir nada ainda
+flyctl launch --no-deploy --copy-config --name receitas-laura-gabriel --region gru
 
-A diferença que pesa é a última linha. Se ela abrir a lista de compras no
-mercado, 50 segundos de tela branca incomodam de verdade — por isso o Fly.io
-tende a valer o cadastro do cartão. O Render resolve se o uso for mais em casa.
+# 3. Criar o disco onde o banco vai viver (1 GB é muito mais que o suficiente)
+flyctl volumes create receitas_data --region gru --size 1
 
-Variáveis a definir nos dois casos:
+# 4. Guardar a senha de vocês e o segredo que assina o cookie de sessão
+flyctl secrets set APP_PASSWORD="a-senha-de-voces"
+flyctl secrets set SESSION_SECRET="GERE-O-SEU"
 
-| Variável | Valor |
-|---|---|
-| `APP_PASSWORD` | a senha que vocês dois vão usar |
-| `SESSION_SECRET` | `node -e "console.log(crypto.randomUUID())"` |
-| `TURSO_DATABASE_URL` | a URL do Turso |
-| `TURSO_AUTH_TOKEN` | o token do Turso |
+# 5. Subir
+flyctl deploy
+```
+
+No fim ele imprime o endereço, algo como
+`https://receitas-laura-gabriel.fly.dev`. É esse link que vai pro celular dela.
+
+> **Sobre o custo:** o Fly exige cartão cadastrado. Uma máquina
+> `shared-cpu-1x` de 512 MB que suspende quando ninguém usa é o menor tamanho
+> que existe, mas as regras de cobrança e de franquia gratuita mudaram algumas
+> vezes — confira o preço atual na hora do cadastro em vez de confiar no que
+> está escrito aqui.
+
+### Trocar a senha depois
+
+```bash
+flyctl secrets set APP_PASSWORD="nova-senha"
+```
+
+### Backup do banco
+
+```bash
+flyctl ssh console -C "cat /data/receitas.db" > backup-receitas.db
+```
 
 ### Instalar como aplicativo
 

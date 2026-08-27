@@ -2,7 +2,15 @@ import { createClient } from '@libsql/client';
 import { mkdirSync } from 'node:fs';
 import path from 'node:path';
 
-const url = process.env.TURSO_DATABASE_URL || 'file:data/receitas.db';
+/**
+ * Onde o banco mora, em ordem de preferência:
+ *   DATABASE_URL         arquivo num disco persistente (volume do Fly)
+ *   TURSO_DATABASE_URL   banco remoto no Turso
+ *   padrão               arquivo local, para rodar no PC
+ */
+const url = process.env.DATABASE_URL
+  || process.env.TURSO_DATABASE_URL
+  || 'file:data/receitas.db';
 
 if (url.startsWith('file:')) {
   const dir = path.dirname(url.slice(5));
