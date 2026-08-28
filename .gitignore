@@ -4,3 +4,11 @@ data/
 .env.local
 *.log
 .DS_Store
+
+# Ferramentas do editor/assistente, que não fazem parte do projeto
+.agents/
+.claude/
+skills-lock.json
+
+# Sobras da geração de ícones
+icon-preview.png
