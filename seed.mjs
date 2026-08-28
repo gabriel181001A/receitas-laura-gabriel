@@ -13,22 +13,31 @@ const api = async (path, body, method = 'POST') => {
   return res.json();
 };
 
-/** Capa de exemplo: gradiente quente com o motivo de azulejo por cima. */
-async function fakePhoto(c1, c2, emoji) {
+/**
+ * Capa de exemplo. Bem dessaturada de proposito: com blocos de cor saturados,
+ * as 18 capas dominavam a tela e a paleta da interface sumia embaixo delas.
+ * Foto de verdade tem contraste baixo e cor quebrada, nao chapada.
+ */
+async function fakePhoto(c1, c2) {
   const svg = `
   <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200">
-    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/>
-    </linearGradient></defs>
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0.7" y2="1">
+        <stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/>
+      </linearGradient>
+      <radialGradient id="v" cx="0.5" cy="0.38" r="0.75">
+        <stop offset="0" stop-color="#fff" stop-opacity="0.20"/>
+        <stop offset="1" stop-color="#000" stop-opacity="0.28"/>
+      </radialGradient>
+    </defs>
     <rect width="900" height="1200" fill="url(#g)"/>
-    <g fill="none" stroke="#fff" stroke-width="6" opacity="0.14">
-      ${[0,1,2,3,4,5,6].flatMap(r=>[0,1,2,3,4].map(c=>{
-        const x=c*180+90, y=r*180+90;
-        return `<path d="M${x} ${y-64} L${x+64} ${y} L${x} ${y+64} L${x-64} ${y} Z"/>`;
-      })).join('')}
-    </g>
+    <rect width="900" height="1200" fill="url(#v)"/>
   </svg>`;
-  return sharp(Buffer.from(svg)).jpeg({ quality: 88 }).toBuffer();
+  return sharp(Buffer.from(svg))
+    .modulate({ saturation: 0.78 })  // tira o exagero sem matar a cor
+    .blur(9)                         // sem forma definida: e um lugar de foto
+    .jpeg({ quality: 82 })
+    .toBuffer();
 }
 
 const RECEITAS = [
@@ -57,7 +66,7 @@ MODO DE PREPARO:
 
 Rende 4 porcoes
 #strogonoff #jantarrapido #frango`,
-    photo: ['#A9502C', '#6B2E16'],
+    photo: ['#A8465C', '#6B2537'],
     rating: 5, favorite: true,
   },
   {
@@ -85,7 +94,7 @@ MODO DE PREPARO:
 
 Rende 12 porcoes
 #bolo #bolodecenoura #sobremesa`,
-    photo: ['#C68B3A', '#8E5A1C'],
+    photo: ['#C08A6E', '#8A5A46'],
     rating: 5, favorite: true,
   },
   {
@@ -103,7 +112,7 @@ Doure o alho no azeite em fogo baixo, com muito cuidado pra nao queimar.
 Misture tudo com um pouco da agua do cozimento e finalize com salsinha.
 
 #macarrao #jantarrapido #massas`,
-    photo: ['#5F7A46', '#3B4E2A'],
+    photo: ['#6E8A6A', '#425440'],
     rating: 4,
   },
   {
@@ -126,7 +135,7 @@ MODO DE PREPARO:
 
 Rende 6 unidades
 #fit #panqueca #cafedamanha #lowcarb`,
-    photo: ['#D2A467', '#9A713C'],
+    photo: ['#D3A392', '#9C7160'],
     rating: 4,
   },
   {
@@ -150,7 +159,7 @@ MODO DE PREPARO:
 
 Rende 4 porcoes
 #salada #vegetariano #almoco`,
-    photo: ['#778A4E', '#4A582C'],
+    photo: ['#8A9A72', '#566447'],
     rating: 3,
   },
   {
@@ -173,7 +182,7 @@ MODO DE PREPARO:
 
 Rende 6 porcoes
 #sopa #jantar #vegano`,
-    photo: ['#C67F30', '#84491A'],
+    photo: ['#C48A64', '#8A5A3C'],
   },
 ];
 

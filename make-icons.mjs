@@ -3,7 +3,7 @@ import { mkdirSync } from 'node:fs';
 
 mkdirSync('public/icons', { recursive: true });
 
-/* Marca: panela pessego sobre terracota, com o motivo de ladrilho ao fundo.
+/* Marca: panela clara sobre rosa fundo, com o motivo de ladrilho ao fundo.
    Emoji não renderiza no sharp (sem fonte de emoji), então é tudo path. */
 const tiles = [0, 1, 2, 3].flatMap((r) => [0, 1, 2, 3].map((c) => {
   const x = c * 128 + 64;
@@ -14,26 +14,26 @@ const tiles = [0, 1, 2, 3].flatMap((r) => [0, 1, 2, 3].map((c) => {
 
 const SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#A9502C"/>
+  <rect width="512" height="512" fill="#B23A5F"/>
   <g fill="none" stroke="#FFFFFF" stroke-width="7" opacity="0.12">${tiles}</g>
 
   <!-- vapor -->
-  <g fill="none" stroke="#FFDFC4" stroke-width="15" stroke-linecap="round" opacity="0.95">
+  <g fill="none" stroke="#FBE4EA" stroke-width="15" stroke-linecap="round" opacity="0.95">
     <path d="M212 168 q-20 -26 0 -52 q20 -26 0 -52"/>
     <path d="M300 168 q-20 -26 0 -52 q20 -26 0 -52"/>
   </g>
 
   <!-- alças -->
-  <g fill="#E8B36A">
+  <g fill="#F4A9C2">
     <rect x="60"  y="232" width="52" height="34" rx="17"/>
     <rect x="400" y="232" width="52" height="34" rx="17"/>
   </g>
 
   <!-- corpo da panela -->
-  <path d="M96 224 h320 l-26 150 a44 44 0 0 1 -43 36 h-182 a44 44 0 0 1 -43 -36 z" fill="#FFDFC4"/>
+  <path d="M96 224 h320 l-26 150 a44 44 0 0 1 -43 36 h-182 a44 44 0 0 1 -43 -36 z" fill="#FFF7F9"/>
   <!-- tampa -->
-  <rect x="78" y="196" width="356" height="38" rx="19" fill="#FFDFC4"/>
-  <circle cx="256" cy="188" r="17" fill="#E8B36A"/>
+  <rect x="78" y="196" width="356" height="38" rx="19" fill="#FFF7F9"/>
+  <circle cx="256" cy="188" r="17" fill="#F4A9C2"/>
 </svg>`;
 
 for (const size of [192, 512]) {

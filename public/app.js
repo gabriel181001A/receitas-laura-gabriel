@@ -107,6 +107,9 @@ const I = {
   chef: svg('<path d="M6 21h12M7 17h10M8.5 3a3.5 3.5 0 0 0-3 5.3A3.5 3.5 0 0 0 7 15h10a3.5 3.5 0 0 0 1.5-6.7A3.5 3.5 0 0 0 12 3.5 3.5 3.5 0 0 0 8.5 3z"/>'),
   play: svg('<polygon points="6 3 20 12 6 21 6 3"/>'),
   copy: svg('<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>'),
+  moon: svg('<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>'),
+  auto: svg('<circle cx="12" cy="12" r="9"/><path d="M12 3v18" fill="currentColor"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>'),
   sparkle: svg('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>'),
 };
 
@@ -137,6 +140,43 @@ const ticks = {
   clear(id) { try { localStorage.removeItem(this.key(id)); } catch { /* ignora */ } },
 };
 
+// ---- tema -----------------------------------------------------------------
+
+/**
+ * Três estados: `sistema` acompanha o Windows/celular, e os outros dois
+ * mandam no CSS pelo atributo data-theme na raiz.
+ */
+const tema = {
+  ordem: ['sistema', 'claro', 'escuro'],
+  rotulo: { sistema: 'Tema do sistema', claro: 'Tema claro', escuro: 'Tema escuro' },
+  icone: { sistema: () => I.auto, claro: () => I.sun, escuro: () => I.moon },
+
+  get() {
+    try { return localStorage.getItem('tema') || 'sistema'; } catch { return 'sistema'; }
+  },
+  set(valor) {
+    try { localStorage.setItem('tema', valor); } catch { /* modo privado */ }
+    this.aplicar();
+  },
+  proximo() {
+    const i = this.ordem.indexOf(this.get());
+    this.set(this.ordem[(i + 1) % this.ordem.length]);
+  },
+  aplicar() {
+    const v = this.get();
+    const raiz = document.documentElement;
+    if (v === 'sistema') raiz.removeAttribute('data-theme');
+    else raiz.setAttribute('data-theme', v === 'claro' ? 'light' : 'dark');
+  },
+};
+
+/** Botão que troca o tema, para colocar na barra do topo. */
+function botaoTema() {
+  const v = tema.get();
+  return `<button class="btn btn-quiet btn-icon" data-tema
+            title="${tema.rotulo[v]}" aria-label="${tema.rotulo[v]}">${tema.icone[v]()}</button>`;
+}
+
 // ---- navegação ------------------------------------------------------------
 
 const TABS = [
@@ -160,7 +200,18 @@ function renderTabs(active) {
   }
 }
 
-function topbar(inner) { $('#topbar').innerHTML = inner; }
+function topbar(inner) {
+  $('#topbar').innerHTML = inner;
+  $('[data-tema]')?.addEventListener('click', () => {
+    tema.proximo();
+    const b = $('[data-tema]');
+    const v = tema.get();
+    b.innerHTML = tema.icone[v]();
+    b.title = tema.rotulo[v];
+    b.setAttribute('aria-label', tema.rotulo[v]);
+    toast(tema.rotulo[v]);
+  });
+}
 
 /** No celular mostra a marca; no computador (marca já na lateral) o título da seção. */
 function brandBar(extra = '', pageTitle = '') {
@@ -173,14 +224,14 @@ function brandBar(extra = '', pageTitle = '') {
       </div>
     </div>
     <div class="page-title">${esc(pageTitle)}</div>
-    <div class="topbar-actions">${extra}</div>`;
+    <div class="topbar-actions">${botaoTema()}${extra}</div>`;
 }
 
 function backBar(title, extra = '') {
   return `
     <button class="btn btn-quiet btn-icon" onclick="history.back()" aria-label="Voltar">${I.back}</button>
     <div class="brand-title" style="flex:1;min-width:0">${esc(title)}</div>
-    <div class="topbar-actions">${extra}</div>`;
+    <div class="topbar-actions">${botaoTema()}${extra}</div>`;
 }
 
 const loading = () => `<div class="loading"><span class="spinner"></span><span>Carregando…</span></div>`;
@@ -1193,6 +1244,7 @@ function route() {
 }
 
 async function boot() {
+  tema.aplicar();
   try {
     S.meta = await api('/api/meta');
   } catch (err) {

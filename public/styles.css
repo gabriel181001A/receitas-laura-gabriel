@@ -1,62 +1,62 @@
 /* =========================================================================
    Receitas — Laura & Gabriel
 
-   Direção: "bancada". O pêssego #FFDFC4 não é papel de parede — é o material
-   que segura conteúdo. Todo cartão, linha de lista, campo e modal é pêssego;
-   a página atrás é uma argila mais fria, para o pêssego ler como superfície
-   e não como fundo lavado.
+   Direção: rosa. A página é um rosa claro; as ações são um rosa bem mais
+   fundo — o contraste que sustenta a tela é entre esses dois. Os cartões
+   sobem para um quase-branco rosado, para se descolarem da página em vez
+   de derreter nela.
 
-   Ações em vinho, que é fruta de caroço como o pêssego e não é o terracota
-   de sempre. Verde de pinheiro só para "feito", nunca para ação.
+   Tinta de ameixa, nunca cinza: cinza sobre rosa suja a cor.
+   Verde só para o que já foi feito, nunca para ação.
 
-   Toda a paleta vive nestes dois blocos: trocar de cor é trocar aqui.
+   Toda a paleta vive nestes blocos: trocar de cor é trocar aqui.
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Argila fria atrás; o pêssego escolhido é a superfície. */
-  --paper:         #E9E3DB;
-  --surface:       #FFDFC4;
-  --surface-2:     #F6D2B5;
-  --line:          #E0BD9C;
-  --line-strong:   #C69F7E;
+  /* Rosa claro na página; o cartão sobe para quase-branco rosado. */
+  --paper:         #FBE4EA;
+  --surface:       #FFF7F9;
+  --surface-2:     #F7D8E1;
+  --line:          #EFC6D2;
+  --line-strong:   #DCA5B6;
 
-  /* Vinho — as ações. Fruta de caroço, como o pêssego. */
-  --brand:       #6B2440;
-  --brand-deep:  #4E1830;
-  --brand-soft:  #F4DDE4;
-  --brand-line:  #DDB4C2;
-  --on-brand:    #FFF1E4;
+  /* O rosa fundo — as ações. É ele que dá o contraste da tela. */
+  --brand:       #B23A5F;
+  --brand-deep:  #8C2748;
+  --brand-soft:  #FADCE5;
+  --brand-line:  #EEB9CA;
+  --on-brand:    #FFF7F9;
 
-  /* O mesmo vinho marca os favoritos: uma cor a menos na tela. */
-  --accent:       #6B2440;
-  --accent-soft:  #F4DDE4;
-  --accent-line:  #DDB4C2;
-  --accent-ink:   #4E1830;
-  --on-accent:    #FFF1E4;
+  /* Favoritos usam o mesmo rosa fundo: uma cor a menos na tela. */
+  --accent:       #B23A5F;
+  --accent-soft:  #FADCE5;
+  --accent-line:  #EEB9CA;
+  --accent-ink:   #8C2748;
+  --on-accent:    #FFF7F9;
 
-  --tomate:        #A3341F;
-  --tomate-soft:   #F7DED6;
-  --tomate-line:   #E4B4A4;
-  --tomate-ink:    #7E2413;
+  --tomate:        #A32D2D;
+  --tomate-soft:   #F9DEDE;
+  --tomate-line:   #E7B5B5;
+  --tomate-ink:    #802020;
 
-  /* Pinheiro, e só para o que já foi feito */
-  --erva:          #2F6145;
-  --erva-soft:     #DDEADF;
+  /* Verde de manjericão, e só para o que já foi feito */
+  --erva:          #2E6F52;
+  --erva-soft:     #DDEDE5;
 
-  /* Tinta de café torrado */
-  --ink:           #2E2018;
-  --ink-2:         #5C4739;
-  --ink-3:         #755C4A;
+  /* Tinta de ameixa. Cinza sobre rosa suja a cor. */
+  --ink:           #33202A;
+  --ink-2:         #614653;
+  --ink-3:         #7E6070;
 
   --radius:        14px;
   --radius-lg:     20px;
   --radius-sm:     9px;
 
-  --shadow-sm:  0 1px 2px rgba(74, 58, 34, .07), 0 1px 3px rgba(74, 58, 34, .05);
-  --shadow:     0 2px 6px rgba(74, 58, 34, .07), 0 8px 20px rgba(74, 58, 34, .08);
-  --shadow-lg:  0 8px 24px rgba(74, 58, 34, .12), 0 24px 56px rgba(74, 58, 34, .14);
+  --shadow-sm:  0 1px 2px rgba(74, 34, 50, .07), 0 1px 3px rgba(74, 34, 50, .05);
+  --shadow:     0 2px 6px rgba(74, 34, 50, .07), 0 8px 20px rgba(74, 34, 50, .08);
+  --shadow-lg:  0 8px 24px rgba(74, 34, 50, .12), 0 24px 56px rgba(74, 34, 50, .14);
 
   --display: 'Bricolage Grotesque', 'Manrope', system-ui, sans-serif;
   --ui: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -69,43 +69,80 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    /* Noite na bancada. Aqui o pêssego vira a AÇÃO, não a tinta: clarear o
-       vinho o suficiente para contrastar com o fundo o transformava em rosa
-       chiclete. O texto recua para um creme mais quieto. */
-    --paper:        #201812;
-    --surface:      #2C211A;
-    --surface-2:    #3A2C22;
-    --line:         #493729;
-    --line-strong:  #614A38;
+    /* Noite: ameixa escura, e o rosa claro vira a AÇÃO. */
+    --paper:        #1E141A;
+    --surface:      #2A1D25;
+    --surface-2:    #382731;
+    --line:         #47333F;
+    --line-strong:  #5E4453;
 
-    --ink:          #F2E6DA;
-    --ink-2:        #C2AE9C;
-    --ink-3:        #9E8B78;
+    --ink:          #F7E7ED;
+    --ink-2:        #C7ADB9;
+    --ink-3:        #A08A97;
 
-    --brand:      #FFDFC4;
-    --brand-deep: #FFEDDC;
-    --brand-soft: #3A2A1E;
-    --brand-line: #56402E;
-    --on-brand:   #2A1B12;
+    --brand:      #F4A9C2;
+    --brand-deep: #FAC6D6;
+    --brand-soft: #3A2029;
+    --brand-line: #56313E;
+    --on-brand:   #2A0E19;
 
-    --accent:      #FFDFC4;
-    --accent-soft: #3A2A1E;
-    --accent-line: #56402E;
-    --accent-ink:  #FFDFC4;
-    --on-accent:   #2A1B12;
+    --accent:      #F4A9C2;
+    --accent-soft: #3A2029;
+    --accent-line: #56313E;
+    --accent-ink:  #F4A9C2;
+    --on-accent:   #2A0E19;
 
-    --tomate:       #E08163;
-    --tomate-soft:  #351C14;
-    --tomate-line:  #52291C;
-    --tomate-ink:   #E08163;
+    --tomate:       #E8817F;
+    --tomate-soft:  #331A1A;
+    --tomate-line:  #4E2727;
+    --tomate-ink:   #E8817F;
 
-    --erva:         #7FBE95;
-    --erva-soft:    #1D2E23;
+    --erva:         #77C29C;
+    --erva-soft:    #1B2E25;
 
     --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
     --shadow:    0 2px 6px rgba(0,0,0,.3), 0 8px 20px rgba(0,0,0,.28);
     --shadow-lg: 0 8px 24px rgba(0,0,0,.4), 0 24px 56px rgba(0,0,0,.4);
   }
+}
+
+/* O mesmo tema escuro, agora forçado pelo seletor de tema do app. Sem isto,
+   quem está no claro do sistema não conseguiria escolher o escuro. */
+:root[data-theme="dark"] {
+  /* Noite: ameixa escura, e o rosa claro vira a AÇÃO. */
+  --paper:        #1E141A;
+  --surface:      #2A1D25;
+  --surface-2:    #382731;
+  --line:         #47333F;
+  --line-strong:  #5E4453;
+
+  --ink:          #F7E7ED;
+  --ink-2:        #C7ADB9;
+  --ink-3:        #A08A97;
+
+  --brand:      #F4A9C2;
+  --brand-deep: #FAC6D6;
+  --brand-soft: #3A2029;
+  --brand-line: #56313E;
+  --on-brand:   #2A0E19;
+
+  --accent:      #F4A9C2;
+  --accent-soft: #3A2029;
+  --accent-line: #56313E;
+  --accent-ink:  #F4A9C2;
+  --on-accent:   #2A0E19;
+
+  --tomate:       #E8817F;
+  --tomate-soft:  #331A1A;
+  --tomate-line:  #4E2727;
+  --tomate-ink:   #E8817F;
+
+  --erva:         #77C29C;
+  --erva-soft:    #1B2E25;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow:    0 2px 6px rgba(0,0,0,.3), 0 8px 20px rgba(0,0,0,.28);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,.4), 0 24px 56px rgba(0,0,0,.4);
 }
 
 * { box-sizing: border-box; }
@@ -142,7 +179,7 @@ a { color: var(--brand-deep); text-decoration: none; }
 /* Motivo geométrico de ladrilho: losango central e quartos de círculo nos
    cantos. Só aparece na tela de entrada e nos estados vazios. */
 .azulejo-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%236B2440' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23B23A5F' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 44px 44px;
 }
 
@@ -268,7 +305,7 @@ main {
 }
 .textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
 .select { appearance: none; padding-right: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A7160' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237E6070' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center;
 }
 
@@ -339,7 +376,7 @@ main {
 }
 .card-scrim {
   position: absolute; inset: auto 0 0 0; padding: 26px 11px 10px;
-  background: linear-gradient(to top, rgba(38, 30, 18, .90) 12%, rgba(38, 30, 18, .58) 52%, transparent);
+  background: linear-gradient(to top, rgba(34, 18, 26, .90) 12%, rgba(34, 18, 26, .58) 52%, transparent);
 }
 .card-title {
   font-family: var(--display); font-size: 15.5px; font-weight: 700; color: #fff;
@@ -361,19 +398,19 @@ main {
 .card-fav {
   position: absolute; top: 8px; right: 8px; z-index: 2;
   width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer;
-  background: rgba(38, 30, 18, .52); backdrop-filter: blur(6px);
+  background: rgba(34, 18, 26, .52); backdrop-filter: blur(6px);
   color: #fff; display: grid; place-items: center;
   transition: background .16s var(--ease), transform .12s var(--ease);
 }
 .card-fav:active { transform: scale(.88); }
 .card-fav svg { width: 17px; height: 17px; }
-/* Sobre a foto o favorito usa o próprio pêssego: o vinho some no escurecimento. */
-.card-fav[data-on="true"] { color: #FFDFC4; }
-.card-fav[data-on="true"] svg { fill: #FFDFC4; }
+/* Sobre a foto o favorito usa o rosa claro: o rosa fundo some no escurecimento. */
+.card-fav[data-on="true"] { color: #FBE4EA; }
+.card-fav[data-on="true"] svg { fill: #FBE4EA; }
 .card-badge {
   position: absolute; top: 8px; left: 8px; z-index: 2;
   padding: 4px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 700;
-  background: rgba(38, 30, 18, .58); backdrop-filter: blur(6px); color: #fff;
+  background: rgba(34, 18, 26, .58); backdrop-filter: blur(6px); color: #fff;
   letter-spacing: .02em;
 }
 
@@ -385,7 +422,7 @@ main {
 }
 .empty::before {
   content: ''; position: absolute; inset: 0; opacity: .5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%236B2440' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23B23A5F' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 44px 44px;
   -webkit-mask-image: radial-gradient(ellipse at center, #000 5%, transparent 68%);
   mask-image: radial-gradient(ellipse at center, #000 5%, transparent 68%);
@@ -608,7 +645,7 @@ main {
 
 .modal-backdrop {
   position: fixed; inset: 0; z-index: 100;
-  background: rgba(38, 30, 18, .58); backdrop-filter: blur(3px);
+  background: rgba(34, 18, 26, .58); backdrop-filter: blur(3px);
   display: flex; align-items: flex-end; justify-content: center;
   animation: fade .18s var(--ease);
 }

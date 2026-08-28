@@ -3,14 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#FFDFC4">
+  <meta name="theme-color" content="#FBE4EA">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Receitas">
   <title>Receitas · Laura & Gabriel</title>
   <link rel="manifest" href="/manifest.json">
+  <script>
+    /* Aplica o tema antes da primeira pintura, senão a tela pisca na cor errada. */
+    try {
+      var t = localStorage.getItem('tema');
+      if (t === 'claro') document.documentElement.setAttribute('data-theme', 'light');
+      else if (t === 'escuro') document.documentElement.setAttribute('data-theme', 'dark');
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="/styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23A9502C'/%3E%3Ctext y='72' x='50' text-anchor='middle' font-size='58'%3E🍲%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23B23A5F'/%3E%3Ctext y='72' x='50' text-anchor='middle' font-size='58'%3E🍲%3C/text%3E%3C/svg%3E">
 </head>
 <body>
   <div id="app">
