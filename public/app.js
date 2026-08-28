@@ -399,20 +399,19 @@ function cardHtml(r) {
   const soNumero = (t) => (String(t).match(/\d+\s*(?:a\s*\d+)?/) || [String(t)])[0].trim();
 
   const meta = [
-    r.prep_time && `<span>${I.clock}${esc(curto(r.prep_time))}</span>`,
-    r.servings && `<span>${I.users}${esc(soNumero(r.servings))}</span>`,
-    r.rating > 0 && `<span style="color:var(--accent)">${'★'.repeat(r.rating)}</span>`,
+    r.prep_time && `<span>${esc(curto(r.prep_time))}</span>`,
+    r.servings && `<span>${esc(soNumero(r.servings))} porç.</span>`,
+    r.rating > 0 && `<span style="color:var(--accent);letter-spacing:0">${'★'.repeat(r.rating)}</span>`,
   ].filter(Boolean).slice(0, 3).join('');
 
   return `
     <a class="card" href="#/receita/${r.id}">
       <div class="card-media">
-        <span class="card-badge">${cat.icon} ${esc(cat.label)}</span>
         <button class="card-fav" data-id="${r.id}" data-on="${r.favorite}"
                 aria-label="Favoritar ${esc(r.title)}">${I.star}</button>
         ${cover}
-        <div class="card-scrim"><div class="card-title">${esc(r.title)}</div></div>
       </div>
+      <div class="card-title">${esc(r.title)}</div>
       ${meta ? `<div class="card-meta">${meta}</div>` : ''}
     </a>`;
 }
@@ -458,12 +457,14 @@ async function viewRecipe(id) {
   const cat = catOf(r.category);
   const done = ticks.get(r.id);
 
+  // Uma linha de texto em caixa alta, sem ícone e sem emoji: os dados se
+  // separam por ponto médio, como em ficha técnica de revista.
   const meta = [
-    r.prep_time && `<span class="meta-pill">${I.clock} ${esc(r.prep_time)}</span>`,
-    r.cook_time && `<span class="meta-pill">🔥 ${esc(r.cook_time)}</span>`,
-    r.servings && `<span class="meta-pill">${I.users} ${esc(r.servings)}</span>`,
-    r.difficulty && `<span class="meta-pill">📊 ${esc(r.difficulty)}</span>`,
-    `<span class="meta-pill accent">${cat.icon} ${esc(cat.label)}</span>`,
+    r.prep_time && `<span>${esc(r.prep_time)}</span>`,
+    r.cook_time && `<span>${esc(r.cook_time)} de forno</span>`,
+    r.servings && `<span>${esc(r.servings)}</span>`,
+    r.difficulty && `<span>${esc(r.difficulty)}</span>`,
+    `<span class="meta-pill accent">${esc(cat.label)}</span>`,
   ].filter(Boolean).join('');
 
   view().innerHTML = `

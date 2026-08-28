@@ -50,9 +50,9 @@
   --ink-2:         #614653;
   --ink-3:         #7E6070;
 
-  --radius:        14px;
+  --radius:        10px;
   --radius-lg:     20px;
-  --radius-sm:     9px;
+  --radius-sm:     7px;
 
   --shadow-sm:  0 1px 2px rgba(74, 34, 50, .07), 0 1px 3px rgba(74, 34, 50, .05);
   --shadow:     0 2px 6px rgba(74, 34, 50, .07), 0 8px 20px rgba(74, 34, 50, .08);
@@ -354,47 +354,51 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
 }
 
+/* Sem caixa, sem borda, sem sombra: a foto e o espaço já separam um item do
+   outro. Cartão com moldura em volta de tudo é o visual de kit pronto. */
 .card {
   position: relative; cursor: pointer; text-align: left;
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--surface); overflow: hidden; padding: 0;
-  box-shadow: var(--shadow-sm);
-  transition: transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s var(--ease);
+  border: 0; background: none; padding: 0; box-shadow: none;
   display: flex; flex-direction: column;
+  transition: opacity .16s var(--ease);
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--brand-line); }
+.card:hover { opacity: .82; }
+.card:hover .card-media img { transform: scale(1.03); }
 
 /* Proporção 3:4 — herdada do vídeo vertical de onde as receitas vêm */
 .card-media {
   position: relative; aspect-ratio: 3 / 4; background: var(--surface-2);
-  overflow: hidden;
+  overflow: hidden; border-radius: 4px;
 }
-.card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s var(--ease);
+}
 .card-media-empty {
   width: 100%; height: 100%; display: grid; place-items: center;
   font-size: 34px; opacity: .3; background: var(--brand-soft);
 }
-.card-scrim {
-  position: absolute; inset: auto 0 0 0; padding: 26px 11px 10px;
-  background: linear-gradient(to top, rgba(34, 18, 26, .90) 12%, rgba(34, 18, 26, .58) 52%, transparent);
-}
+
+/* O título desceu para baixo da foto. Texto branco sobre escurecimento é o
+   padrão de catálogo de streaming, não de caderno de receitas. */
 .card-title {
-  font-family: var(--display); font-size: 15.5px; font-weight: 700; color: #fff;
-  letter-spacing: -.02em;
-  line-height: 1.22; letter-spacing: -.01em;
+  font-family: var(--display); font-size: 16px; font-weight: 800;
+  color: var(--ink); letter-spacing: -.03em; line-height: 1.12;
+  margin-top: 9px;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .card-meta {
-  display: flex; align-items: center; gap: 9px;
-  padding: 9px 11px; font-size: 11.5px; color: var(--ink-3); font-weight: 600;
-  overflow: hidden;
+  display: block; padding: 4px 0 0;
+  font-size: 10px; color: var(--ink-3); font-weight: 700;
+  letter-spacing: .11em; text-transform: uppercase; overflow: hidden;
 }
+.card-meta span + span::before { content: '·'; margin: 0 .45em; opacity: .55; }
 /* Cada item encolhe por igual em vez de o primeiro cortar sozinho. */
 .card-meta span {
   display: inline-flex; align-items: center; gap: 3.5px;
   white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis;
 }
-.card-meta svg { width: 13px; height: 13px; flex: none; stroke-width: 2; }
+.card-meta svg { display: none; }
 .card-fav {
   position: absolute; top: 8px; right: 8px; z-index: 2;
   width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer;
@@ -432,11 +436,25 @@ main {
 .empty h3 { font-size: 19px; margin-bottom: 7px; }
 .empty p { color: var(--ink-2); font-size: 14.5px; max-width: 340px; margin: 0 auto 18px; }
 
+/* ---- Rótulo de seção: 11px em caixa alta espaçada -----------------------
+   Contraste de escala é o que separa página editorial de kit de UI: um
+   rótulo minúsculo ao lado de um título grande, sem tamanhos intermediários
+   e seguros no meio do caminho. */
+.eyebrow {
+  font-family: var(--ui);
+  font-size: 10.5px; font-weight: 800;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--brand); margin: 0;
+}
+
 /* ---- Detalhe da receita ------------------------------------------------- */
 
+/* Foto sangrando até a borda. Imagem dentro de caixa arredondada com margem
+   é o visual de framework; sangrar é escolha de quem diagramou a página. */
 .detail-hero {
-  position: relative; border-radius: var(--radius-lg); overflow: hidden;
-  aspect-ratio: 4 / 3; background: var(--surface-2); margin-bottom: 18px;
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3; background: var(--surface-2);
+  margin: -18px -16px 20px; border-radius: 0;
 }
 .detail-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .detail-hero-empty {
@@ -444,36 +462,53 @@ main {
   font-size: 56px; opacity: .28; background: var(--brand-soft);
 }
 
-.detail-title { font-size: clamp(27px, 6.5vw, 40px); line-height: 1.03; margin-bottom: 10px; }
+.detail-title { font-size: clamp(31px, 8vw, 46px); line-height: .98; margin-bottom: 12px; }
 .detail-desc { color: var(--ink-2); font-size: 15px; margin-bottom: 16px; white-space: pre-wrap; }
 
-.meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-.meta-pill {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 6px 11px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
-  background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line);
+/* Pílulas arredondadas são o padrão mais batido que existe. Aqui os dados
+   viram uma linha só, em caixa alta, separada por ponto médio. */
+.meta-row {
+  display: block; margin-bottom: 22px;
+  font-size: 11px; font-weight: 700; letter-spacing: .11em;
+  text-transform: uppercase; color: var(--ink-2);
 }
-.meta-pill svg { width: 14px; height: 14px; }
-.meta-pill.accent { background: var(--brand-soft); color: var(--brand); border-color: var(--brand-line); }
+.meta-row span + span::before { content: '·'; margin: 0 .55em; opacity: .5; }
+.meta-pill { display: inline; }
+.meta-pill.accent { color: var(--brand); }
 
 .section { margin-bottom: 26px; }
 
 /* Ingredientes e preparo ficam sobre pêssego, como fichas na bancada. */
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 4px 12px 12px;
+/* ASSINATURA: a receita é uma página de caderno.
+   Sem caixa em volta — o que organiza são as linhas pautadas, como no
+   caderno de receitas que este app substitui. É a tela que ela encara
+   cozinhando, então é aqui que vale gastar a ousadia. */
+.panel { background: none; border: 0; border-radius: 0; padding: 0; }
+.panel .section-head { margin-bottom: 2px; }
+
+.panel .check-item,
+.panel .step-item {
+  border-radius: 0;
+  border-bottom: 1px solid var(--line);
+  padding-left: 0; padding-right: 0;
 }
-.panel .section-head { border-bottom-color: var(--line); margin-bottom: 6px; }
+.panel .check-list > *:last-child { border-bottom: 0; }
 .section-head {
   display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;
-  padding-bottom: 8px; border-bottom: 2px solid var(--brand-soft);
+  padding-bottom: 7px; border-bottom: 1.5px solid var(--brand);
 }
-.section-head h2 { font-size: 19px; display: flex; align-items: center; gap: 8px; }
+.section-head h2 {
+  font-family: var(--ui);
+  font-size: 10.5px; font-weight: 800;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--brand); display: flex; align-items: center; gap: 8px;
+}
 /* Trava de segurança: SVG solto num título herda tamanho gigante. */
 .section-head svg { width: 18px; height: 18px; flex: none; stroke-width: 2; }
-.section-head .count { font-size: 12.5px; color: var(--ink-3); font-weight: 700; margin-left: auto; }
+.section-head .count {
+  font-size: 10.5px; color: var(--ink-3); font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; margin-left: auto;
+}
 
 /* Ingredientes e passos são marcáveis — sobrevivem ao recarregar (localStorage) */
 .check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -483,8 +518,8 @@ main {
 }
 .check-item:hover { background: color-mix(in srgb, var(--surface) 55%, #fff); }
 .check-box {
-  flex: none; width: 21px; height: 21px; margin-top: 1px; border-radius: 6px;
-  border: 2px solid var(--line-strong); background: transparent;
+  flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 3px;
+  border: 1.5px solid var(--line-strong); background: transparent;
   display: grid; place-items: center; transition: all .16s var(--ease);
 }
 .check-box svg { width: 13px; height: 13px; color: var(--on-brand); opacity: 0; stroke-width: 3.5; }
@@ -496,14 +531,16 @@ main {
 /* Passos numerados: aqui a ordem é informação real */
 .step-item { display: flex; gap: 13px; padding: 11px 10px; border-radius: var(--radius-sm); cursor: pointer; }
 .step-item:hover { background: color-mix(in srgb, var(--surface) 55%, #fff); }
+/* Algarismo na margem, como num caderno. Bolinha colorida em volta de
+   número é enfeite de framework, e a ordem já é informação suficiente. */
 .step-n {
-  flex: none; width: 27px; height: 27px; border-radius: 50%;
-  background: var(--brand-soft); color: var(--brand);
-  display: grid; place-items: center;
-  font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums;
-  transition: all .16s var(--ease);
+  flex: none; width: 22px; text-align: right;
+  color: var(--brand); background: none;
+  font-family: var(--display);
+  font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums;
+  letter-spacing: -.03em; padding-top: 1px;
 }
-.step-item[data-done="true"] .step-n { background: var(--erva); color: var(--on-brand); }
+.step-item[data-done="true"] .step-n { color: var(--ink-3); }
 .step-item[data-done="true"] .step-text { color: var(--ink-3); text-decoration: line-through; }
 .step-text { font-size: 15px; line-height: 1.55; padding-top: 2px; }
 
@@ -543,21 +580,24 @@ main {
 
 /* ---- Lista de compras --------------------------------------------------- */
 
-.aisle { margin-bottom: 22px; }
+.aisle { margin-bottom: 26px; }
 .aisle-head {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
-  font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 7px; margin: 22px 0 2px;
+  font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
   color: var(--brand);
+  padding-bottom: 7px; border-bottom: 1.5px solid var(--brand);
 }
-.aisle-head::after { content: ''; flex: 1; height: 1.5px; background: var(--brand-soft); }
 
+/* Linhas pautadas, como na receita: uma caixa por item repete o visual de
+   kit e ainda alonga a lista, que é o contrário do que se quer no mercado. */
 .shop-item {
-  display: flex; align-items: center; gap: 11px; padding: 11px 12px;
-  border: 1px solid var(--line); border-radius: var(--radius-sm);
-  background: var(--surface); margin-bottom: 6px;
-  transition: opacity .18s var(--ease), background .18s var(--ease);
+  display: flex; align-items: center; gap: 11px;
+  padding: 12px 2px; margin: 0;
+  background: none; border: 0; border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: opacity .18s var(--ease);
 }
-.shop-item[data-checked="true"] { opacity: .48; background: var(--surface-2); }
+.shop-item[data-checked="true"] { opacity: .45; }
 .shop-item[data-checked="true"] .shop-label { text-decoration: line-through; }
 .shop-main { flex: 1; min-width: 0; cursor: pointer; display: flex; align-items: center; gap: 11px; }
 .shop-label { font-size: 15px; font-weight: 500; display: block; }

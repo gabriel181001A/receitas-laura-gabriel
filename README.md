@@ -210,20 +210,34 @@ com a receita aberta no computador.
 ## Design
 
 **Rosa.** A página é um rosa claro (`#FBE4EA`) e as ações são um rosa bem mais
-fundo (`#B23A5F`) — o contraste que sustenta a tela é entre esses dois. Os
-cartões sobem para um quase-branco rosado (`#FFF7F9`) para se descolarem da
-página em vez de derreter nela.
+fundo (`#B23A5F`). A tinta é ameixa, nunca cinza: cinza sobre rosa suja a cor.
+Verde de manjericão fica só para o que já foi feito. Títulos em **Bricolage
+Grotesque**, interface em Manrope.
 
-A tinta é ameixa (`#33202A`), nunca cinza: cinza sobre rosa suja a cor. Verde
-de manjericão (`#2E6F52`) fica reservado para o que já foi feito, nunca para
-ação. Títulos em **Bricolage Grotesque**, interface em Manrope.
+No escuro a lógica inverte: a página vira ameixa quase preta e o rosa claro
+passa a ser a ação. Há um seletor de tema na barra do topo com três estados,
+aplicado antes da primeira pintura para a tela não piscar.
 
-No escuro a lógica inverte: a página vira ameixa quase preta e o **rosa claro
-passa a ser a ação** — botões rosa com texto escuro.
+### A página de caderno
 
-Há um seletor de tema na barra do topo, com três estados: acompanha o sistema,
-força claro, força escuro. A escolha fica no aparelho, e é aplicada antes da
-primeira pintura para a tela não piscar na cor errada.
+A tela de receita é a **assinatura** do projeto, e é onde vale gastar a ousadia:
+é o que se encara cozinhando. Ingredientes e preparo não ficam dentro de caixa
+— o que organiza são linhas pautadas, e os passos são algarismos na margem,
+como no caderno de receitas que este app substitui.
+
+### O que foi deliberadamente evitado
+
+Uma primeira versão desta interface tinha cara de template. As causas eram
+identificáveis, e cada uma foi desfeita:
+
+| Padrão genérico | O que ficou no lugar |
+|---|---|
+| Tudo em caixa arredondada com borda e sombra | Espaço e filete separam; caixa só onde precisa |
+| Foto dentro de moldura com margem | Foto sangrando até a borda |
+| Título branco sobre escurecimento da foto | Título abaixo da foto, na cor da tinta |
+| Pílulas arredondadas para os dados | Uma linha em caixa alta, separada por ponto médio |
+| Escala tipográfica estreita e segura | Rótulo de 10,5 px ao lado de título de até 46 px |
+| Ícone de biblioteca e emoji em toda parte | Texto; emoji só nas seções do mercado, onde ajuda a escanear |
 
 Os cards são 3:4 — a proporção do vídeo vertical de onde as receitas vêm.
 Todos os pares de texto passam em 4.5:1 nos dois temas.
