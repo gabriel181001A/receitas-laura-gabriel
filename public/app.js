@@ -385,7 +385,7 @@ async function viewRecipe(id) {
       </div>
 
       <div>
-        <div class="section">
+        <div class="section panel">
           <div class="section-head">
             <h2>Ingredientes</h2>
             <span class="count">${r.ingredients.length}</span>
@@ -400,7 +400,7 @@ async function viewRecipe(id) {
             </ul>` : `<p style="color:var(--ink-3);font-size:14.5px">Nenhum ingrediente anotado ainda.</p>`}
         </div>
 
-        <div class="section">
+        <div class="section panel">
           <div class="section-head">
             <h2>Modo de preparo</h2>
             <span class="count">${r.steps.length} ${r.steps.length === 1 ? 'passo' : 'passos'}</span>

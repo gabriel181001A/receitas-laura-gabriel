@@ -183,19 +183,27 @@ com a receita aberta no computador.
 
 ## Design
 
-Pêssego `#FFDFC4` — a cor escolhida — é a página. Tudo o mais deriva dela:
-os cartões sobem para creme (`#FFF6EE`), a tinta desce para cacau (`#3B2517`),
-as ações usam o mesmo tom em terracota fundo (`#A9502C`) e os favoritos ganham
-ouro velho (`#B8832A`). Um verde de erva (`#5F7A46`) marca o que já foi feito,
-para não se confundir com os botões.
+**Direção: "bancada".** O pêssego `#FFDFC4` escolhido por vocês não é papel de
+parede — é o material que segura conteúdo. Todo cartão, linha de lista, campo e
+painel de receita é pêssego; a página atrás é uma argila mais fria (`#E9E3DB`),
+para o pêssego ler como superfície em vez de fundo lavado.
 
-Títulos em Fraunces, interface em Manrope. Um motivo de ladrilho aparece só no
-ícone, na tela de entrada e nos estados vazios.
+As ações são **vinho** (`#6B2440`) — fruta de caroço, como o pêssego, e
+deliberadamente não o terracota. Verde de pinheiro (`#2F6145`) fica reservado
+para o que já foi feito, nunca para ação. Títulos em **Bricolage Grotesque**,
+interface em Manrope.
 
-No escuro o pêssego volta como cor do texto sobre cacau, então a mesma cor
-aparece nos dois temas. Todos os pares de texto passam em 4.5:1 ou mais.
+> A primeira versão desta tela era fundo creme + serifa de alto contraste +
+> acento terracota. Isso é exatamente o clichê nº 1 do design gerado por IA, e
+> por isso parecia genérica. A cor de vocês estava fixada; o que estava errado
+> eram as escolhas em volta dela.
+
+No escuro a lógica inverte: o pêssego vira a **ação** (botões de pêssego com
+texto escuro) e o texto recua para um creme quieto. Clarear o vinho o
+suficiente para contrastar com o fundo escuro o transformava em rosa chiclete.
 
 Os cards são 3:4 — a proporção do vídeo vertical de onde as receitas vêm.
+Todos os pares de texto passam em 4.5:1 nos dois temas.
 
-Toda a paleta vive nos dois blocos de `:root` no topo de `public/styles.css`
-(claro e escuro). Trocar de cor é mexer só ali.
+Toda a paleta vive nos dois blocos de `:root` no topo de `public/styles.css`.
+Trocar de cor é mexer só ali.

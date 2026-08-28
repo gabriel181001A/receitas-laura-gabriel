@@ -1,47 +1,54 @@
 /* =========================================================================
    Receitas — Laura & Gabriel
-   Identidade: pêssego #FFDFC4. Tudo deriva dessa cor — a página é ela,
-   os cartões sobem para creme, a tinta desce para cacau.
+
+   Direção: "bancada". O pêssego #FFDFC4 não é papel de parede — é o material
+   que segura conteúdo. Todo cartão, linha de lista, campo e modal é pêssego;
+   a página atrás é uma argila mais fria, para o pêssego ler como superfície
+   e não como fundo lavado.
+
+   Ações em vinho, que é fruta de caroço como o pêssego e não é o terracota
+   de sempre. Verde de pinheiro só para "feito", nunca para ação.
+
    Toda a paleta vive nestes dois blocos: trocar de cor é trocar aqui.
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Superfícies — o pêssego escolhido é a página; o cartão é mais claro. */
-  --paper:         #FFDFC4;
-  --surface:       #FFF6EE;
-  --surface-2:     #F9D9BC;
-  --line:          #F0C7A4;
-  --line-strong:   #DCAA82;
+  /* Argila fria atrás; o pêssego escolhido é a superfície. */
+  --paper:         #E9E3DB;
+  --surface:       #FFDFC4;
+  --surface-2:     #F6D2B5;
+  --line:          #E0BD9C;
+  --line-strong:   #C69F7E;
 
-  /* Terracota — o mesmo tom do fundo, só que fundo e forte. As ações. */
-  --brand:       #A9502C;
-  --brand-deep:  #8A3E20;
-  --brand-soft:  #FBE7DA;
-  --brand-line:  #EFC4A9;
-  --on-brand:    #FFF6EE;
+  /* Vinho — as ações. Fruta de caroço, como o pêssego. */
+  --brand:       #6B2440;
+  --brand-deep:  #4E1830;
+  --brand-soft:  #F4DDE4;
+  --brand-line:  #DDB4C2;
+  --on-brand:    #FFF1E4;
 
-  /* Ouro velho — favoritos e destaques, com parcimônia */
-  --accent:       #B8832A;
-  --accent-soft:  #FBEBD2;
-  --accent-line:  #EACFA1;
-  --accent-ink:   #7A5410;
-  --on-accent:    #2E1F06;
+  /* O mesmo vinho marca os favoritos: uma cor a menos na tela. */
+  --accent:       #6B2440;
+  --accent-soft:  #F4DDE4;
+  --accent-line:  #DDB4C2;
+  --accent-ink:   #4E1830;
+  --on-accent:    #FFF1E4;
 
-  --tomate:        #B03A22;
-  --tomate-soft:   #FBE2DA;
-  --tomate-line:   #EDBBA9;
-  --tomate-ink:    #8A2C16;
+  --tomate:        #A3341F;
+  --tomate-soft:   #F7DED6;
+  --tomate-line:   #E4B4A4;
+  --tomate-ink:    #7E2413;
 
-  /* Marcado como feito: verde de erva, para não se confundir com as ações */
-  --erva:          #5F7A46;
-  --erva-soft:     #E7EEDC;
+  /* Pinheiro, e só para o que já foi feito */
+  --erva:          #2F6145;
+  --erva-soft:     #DDEADF;
 
-  /* Tinta de cacau, nunca preto puro */
-  --ink:           #3B2517;
-  --ink-2:         #6E4C34;
-  --ink-3:         #8A6845;
+  /* Tinta de café torrado */
+  --ink:           #2E2018;
+  --ink-2:         #5C4739;
+  --ink-3:         #755C4A;
 
   --radius:        14px;
   --radius-lg:     20px;
@@ -51,7 +58,7 @@
   --shadow:     0 2px 6px rgba(74, 58, 34, .07), 0 8px 20px rgba(74, 58, 34, .08);
   --shadow-lg:  0 8px 24px rgba(74, 58, 34, .12), 0 24px 56px rgba(74, 58, 34, .14);
 
-  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --display: 'Bricolage Grotesque', 'Manrope', system-ui, sans-serif;
   --ui: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --tabbar-h: 66px;
@@ -62,36 +69,38 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    /* Noite: cacau escuro, e o pêssego volta como cor do texto */
-    --paper:        #1F1610;
-    --surface:      #2B1F17;
-    --surface-2:    #382719;
-    --line:         #47311F;
-    --line-strong:  #5E4129;
+    /* Noite na bancada. Aqui o pêssego vira a AÇÃO, não a tinta: clarear o
+       vinho o suficiente para contrastar com o fundo o transformava em rosa
+       chiclete. O texto recua para um creme mais quieto. */
+    --paper:        #201812;
+    --surface:      #2C211A;
+    --surface-2:    #3A2C22;
+    --line:         #493729;
+    --line-strong:  #614A38;
 
-    --ink:          #FFDFC4;
-    --ink-2:        #CDA98B;
-    --ink-3:        #9E7C5E;
+    --ink:          #F2E6DA;
+    --ink-2:        #C2AE9C;
+    --ink-3:        #9E8B78;
 
-    --brand:      #E08A5E;
-    --brand-deep: #F0A57F;
-    --brand-soft: #3B2317;
-    --brand-line: #57351F;
-    --on-brand:   #2A1108;
+    --brand:      #FFDFC4;
+    --brand-deep: #FFEDDC;
+    --brand-soft: #3A2A1E;
+    --brand-line: #56402E;
+    --on-brand:   #2A1B12;
 
-    --accent:      #DDAA51;
-    --accent-soft: #33260F;
-    --accent-line: #513C1B;
-    --accent-ink:  #DDAA51;
-    --on-accent:   #2A1B06;
+    --accent:      #FFDFC4;
+    --accent-soft: #3A2A1E;
+    --accent-line: #56402E;
+    --accent-ink:  #FFDFC4;
+    --on-accent:   #2A1B12;
 
-    --tomate:       #DE7053;
-    --tomate-soft:  #351B13;
-    --tomate-line:  #52281B;
-    --tomate-ink:   #DE7053;
+    --tomate:       #E08163;
+    --tomate-soft:  #351C14;
+    --tomate-line:  #52291C;
+    --tomate-ink:   #E08163;
 
-    --erva:         #9DB775;
-    --erva-soft:    #26301A;
+    --erva:         #7FBE95;
+    --erva-soft:    #1D2E23;
 
     --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
     --shadow:    0 2px 6px rgba(0,0,0,.3), 0 8px 20px rgba(0,0,0,.28);
@@ -114,7 +123,10 @@ html, body {
   overscroll-behavior-y: none;
 }
 
-h1, h2, h3, h4 { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: -.01em; }
+h1, h2, h3, h4 {
+  margin: 0; font-family: var(--display);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.08;
+}
 p { margin: 0; }
 button, input, textarea, select { font: inherit; color: inherit; }
 /* Link usa o terracota mais fundo: o tom claro fica em 4.3:1 sobre o pêssego. */
@@ -130,7 +142,7 @@ a { color: var(--brand-deep); text-decoration: none; }
 /* Motivo geométrico de ladrilho: losango central e quartos de círculo nos
    cantos. Só aparece na tela de entrada e nos estados vazios. */
 .azulejo-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23A9502C' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%236B2440' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 44px 44px;
 }
 
@@ -158,8 +170,8 @@ a { color: var(--brand-deep); text-decoration: none; }
 }
 .brand-text { min-width: 0; }
 .brand-title {
-  font-family: var(--display); font-size: 17px; font-weight: 600;
-  line-height: 1.15; letter-spacing: -.015em;
+  font-family: var(--display); font-size: 17.5px; font-weight: 800;
+  line-height: 1.15; letter-spacing: -.03em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .brand-sub { font-size: 11.5px; color: var(--ink-3); font-weight: 500; letter-spacing: .02em; }
@@ -256,7 +268,7 @@ main {
 }
 .textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
 .select { appearance: none; padding-right: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A6845' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A7160' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center;
 }
 
@@ -330,7 +342,8 @@ main {
   background: linear-gradient(to top, rgba(38, 30, 18, .90) 12%, rgba(38, 30, 18, .58) 52%, transparent);
 }
 .card-title {
-  font-family: var(--display); font-size: 15px; font-weight: 600; color: #fff;
+  font-family: var(--display); font-size: 15.5px; font-weight: 700; color: #fff;
+  letter-spacing: -.02em;
   line-height: 1.22; letter-spacing: -.01em;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
@@ -354,8 +367,9 @@ main {
 }
 .card-fav:active { transform: scale(.88); }
 .card-fav svg { width: 17px; height: 17px; }
-.card-fav[data-on="true"] { color: var(--accent); }
-.card-fav[data-on="true"] svg { fill: var(--accent); }
+/* Sobre a foto o favorito usa o próprio pêssego: o vinho some no escurecimento. */
+.card-fav[data-on="true"] { color: #FFDFC4; }
+.card-fav[data-on="true"] svg { fill: #FFDFC4; }
 .card-badge {
   position: absolute; top: 8px; left: 8px; z-index: 2;
   padding: 4px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 700;
@@ -371,7 +385,7 @@ main {
 }
 .empty::before {
   content: ''; position: absolute; inset: 0; opacity: .5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23A9502C' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%236B2440' stroke-width='1.1' opacity='.28'%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3Cpath d='M22 14 L30 22 L22 30 L14 22 Z'/%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='44' cy='0' r='8'/%3E%3Ccircle cx='0' cy='44' r='8'/%3E%3Ccircle cx='44' cy='44' r='8'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 44px 44px;
   -webkit-mask-image: radial-gradient(ellipse at center, #000 5%, transparent 68%);
   mask-image: radial-gradient(ellipse at center, #000 5%, transparent 68%);
@@ -393,7 +407,7 @@ main {
   font-size: 56px; opacity: .28; background: var(--brand-soft);
 }
 
-.detail-title { font-size: clamp(25px, 6vw, 36px); line-height: 1.1; margin-bottom: 10px; }
+.detail-title { font-size: clamp(27px, 6.5vw, 40px); line-height: 1.03; margin-bottom: 10px; }
 .detail-desc { color: var(--ink-2); font-size: 15px; margin-bottom: 16px; white-space: pre-wrap; }
 
 .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
@@ -406,6 +420,15 @@ main {
 .meta-pill.accent { background: var(--brand-soft); color: var(--brand); border-color: var(--brand-line); }
 
 .section { margin-bottom: 26px; }
+
+/* Ingredientes e preparo ficam sobre pêssego, como fichas na bancada. */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 4px 12px 12px;
+}
+.panel .section-head { border-bottom-color: var(--line); margin-bottom: 6px; }
 .section-head {
   display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;
   padding-bottom: 8px; border-bottom: 2px solid var(--brand-soft);
@@ -421,10 +444,10 @@ main {
   display: flex; align-items: flex-start; gap: 11px; cursor: pointer;
   padding: 9px 10px; border-radius: var(--radius-sm); transition: background .14s var(--ease);
 }
-.check-item:hover { background: var(--surface-2); }
+.check-item:hover { background: color-mix(in srgb, var(--surface) 55%, #fff); }
 .check-box {
   flex: none; width: 21px; height: 21px; margin-top: 1px; border-radius: 6px;
-  border: 2px solid var(--line-strong); background: var(--surface);
+  border: 2px solid var(--line-strong); background: transparent;
   display: grid; place-items: center; transition: all .16s var(--ease);
 }
 .check-box svg { width: 13px; height: 13px; color: var(--on-brand); opacity: 0; stroke-width: 3.5; }
@@ -435,7 +458,7 @@ main {
 
 /* Passos numerados: aqui a ordem é informação real */
 .step-item { display: flex; gap: 13px; padding: 11px 10px; border-radius: var(--radius-sm); cursor: pointer; }
-.step-item:hover { background: var(--surface-2); }
+.step-item:hover { background: color-mix(in srgb, var(--surface) 55%, #fff); }
 .step-n {
   flex: none; width: 27px; height: 27px; border-radius: 50%;
   background: var(--brand-soft); color: var(--brand);
@@ -520,7 +543,7 @@ main {
 .week-nav {
   display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
 }
-.week-label { font-family: var(--display); font-size: 17px; font-weight: 600; flex: 1; text-align: center; }
+.week-label { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -.02em; flex: 1; text-align: center; }
 
 .day {
   border: 1px solid var(--line); border-radius: var(--radius);
@@ -531,7 +554,7 @@ main {
   display: flex; align-items: baseline; gap: 8px; padding: 11px 14px;
   background: var(--surface-2); border-bottom: 1px solid var(--line);
 }
-.day-name { font-family: var(--display); font-size: 15.5px; font-weight: 600; text-transform: capitalize; }
+.day-name { font-family: var(--display); font-size: 16px; font-weight: 800; letter-spacing: -.025em; text-transform: capitalize; }
 .day-date { font-size: 12px; color: var(--ink-3); font-weight: 600; }
 .day[data-today="true"] .day-name { color: var(--brand); }
 .today-pill {
@@ -694,8 +717,8 @@ body.cook-mode .check-item, body.cook-mode .step-item { padding: 13px 12px; }
   .topbar { padding-left: 26px; padding-right: 26px; }
   .topbar .brand { display: none; }
   .page-title {
-    display: block; font-family: var(--display); font-size: 19px;
-    font-weight: 600; letter-spacing: -.015em; flex: 1; min-width: 0;
+    display: block; font-family: var(--display); font-size: 20px;
+    font-weight: 800; letter-spacing: -.03em; flex: 1; min-width: 0;
   }
   main { padding: 24px 26px 60px; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; }
