@@ -109,7 +109,8 @@ flyctl volumes create receitas_data --region gru --size 1
 
 # 4. Guardar a senha de vocês e o segredo que assina o cookie de sessão
 flyctl secrets set APP_PASSWORD="a-senha-de-voces"
-flyctl secrets set SESSION_SECRET="GERE-O-SEU"
+# Gere um valor aleatório na hora — nunca use um segredo copiado de documentação:
+flyctl secrets set SESSION_SECRET="$(node -e 'console.log(require("crypto").randomBytes(32).toString("hex"))')"
 
 # 5. Subir
 flyctl deploy
