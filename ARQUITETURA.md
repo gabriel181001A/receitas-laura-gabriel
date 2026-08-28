@@ -191,9 +191,10 @@ enquanto o servidor antigo continuava no ar.
 **O Instagram bloqueia IP de datacenter.** Confirmado em produção. Para
 melhorar, exporte os cookies do navegador e aponte `IG_COOKIES_FILE`.
 
-**Não há sincronização ao vivo.** As telas só atualizam quando recarregam. Se
-duas pessoas usam a lista ao mesmo tempo no mercado, uma precisa atualizar para
-ver o que a outra marcou.
+**A lista de compras se atualiza sozinha; as outras telas não.** O objeto
+`auto` em `public/app.js` faz a tela da lista acompanhar o servidor a cada 8
+segundos, porque ali duas pessoas mexem ao mesmo tempo. Receitas e planejador
+continuam atualizando só ao recarregar — mudam devagar e são de uso solitário.
 
 **O service worker guarda o casco do app.** Depois de publicar mudança visual,
 pode ser preciso `Ctrl+Shift+R` para ver. As chamadas de API nunca são

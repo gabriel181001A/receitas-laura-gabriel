@@ -177,6 +177,69 @@ function botaoTema() {
             title="${tema.rotulo[v]}" aria-label="${tema.rotulo[v]}">${tema.icone[v]()}</button>`;
 }
 
+// ---- atualização automática ------------------------------------------------
+
+/**
+ * Mantém a tela em dia com o servidor enquanto ela estiver aberta.
+ *
+ * Existe porque a lista de compras é usada por duas pessoas ao mesmo tempo:
+ * se ela marca um item no mercado, a tela do outro precisa acompanhar sem
+ * ninguém lembrar de atualizar.
+ *
+ * Cuidados que valem mais que o intervalo em si:
+ *  - só redesenha quando os dados realmente mudaram, comparando uma impressão;
+ *  - fica quieto com a aba escondida, e olha na hora em que ela volta — que é
+ *    quando é mais provável ter novidade;
+ *  - não redesenha com um modal aberto, para não puxar o tapete de quem digita;
+ *  - falha em silêncio: sem rede, o próximo ciclo tenta de novo.
+ */
+const auto = {
+  timer: null,
+  aoVoltar: null,
+  config: null,
+  impressao: null,
+
+  iniciar(config) {
+    this.parar();
+    this.config = config;
+    this.impressao = config.inicial;
+
+    const olhar = async (redesenhar = true) => {
+      if (document.hidden || $('.modal-backdrop')) return;
+      try {
+        const dados = await config.buscar();
+        const agora = config.digital(dados);
+        if (agora === this.impressao) return;
+        this.impressao = agora;
+        if (redesenhar) config.aoMudar(dados);
+      } catch { /* sem rede: o próximo ciclo tenta de novo */ }
+    };
+
+    this.timer = setInterval(olhar, config.intervalo || 8000);
+    this.aoVoltar = () => { if (!document.hidden) olhar(); };
+    document.addEventListener('visibilitychange', this.aoVoltar);
+  },
+
+  /** Depois de uma alteração local, alinha a impressão sem redesenhar. */
+  async alinhar() {
+    if (!this.config) return;
+    try { this.impressao = this.config.digital(await this.config.buscar()); }
+    catch { /* segue com a impressão antiga */ }
+  },
+
+  parar() {
+    clearInterval(this.timer);
+    this.timer = null;
+    if (this.aoVoltar) document.removeEventListener('visibilitychange', this.aoVoltar);
+    this.aoVoltar = null;
+    this.config = null;
+  },
+};
+
+/** Identidade da lista: muda se algum item entrou, saiu, foi marcado ou renomeado. */
+const digitalDaLista = (d) =>
+  d.groups.flatMap((g) => g.items.map((i) => `${i.id}:${i.checked ? 1 : 0}:${i.label}`)).join('|');
+
 // ---- navegação ------------------------------------------------------------
 
 const TABS = [
@@ -1136,6 +1199,20 @@ async function viewShopping() {
         <button class="btn btn-primary" data-additem>${I.plus} Adicionar item</button>
       </div>`}`;
 
+  // Enquanto esta tela estiver aberta, acompanha o que o outro aparelho fizer.
+  auto.iniciar({
+    buscar: () => api('/api/shopping'),
+    digital: digitalDaLista,
+    inicial: digitalDaLista(data),
+    aoMudar: () => {
+      const y = window.scrollY;
+      viewShopping().then(() => {
+        window.scrollTo(0, y);          // redesenhar não pode perder o lugar
+        toast('Lista atualizada');       // mudança sem explicação confunde
+      });
+    },
+  });
+
   // Marcar/desmarcar
   view().querySelectorAll('[data-toggle]').forEach((el) => {
     el.onclick = async () => {
@@ -1148,6 +1225,7 @@ async function viewShopping() {
       await api(`/api/shopping/item/${el.dataset.toggle}`, { method: 'PATCH', body: { checked: on } });
       S.shoppingCount += on ? -1 : 1;
       renderTabs('lista');
+      auto.alinhar();  // a tela já mostra isso: não é novidade vinda de fora
     };
   });
 
@@ -1230,6 +1308,7 @@ function route() {
   const parts = path.split('/').filter(Boolean);
   window.scrollTo(0, 0);
   document.body.classList.remove('cook-mode');
+  auto.parar();
 
   switch (parts[0]) {
     case undefined:      return viewRecipes();
