@@ -64,7 +64,27 @@ seu PC. Funciona de qualquer lugar, mas o PC continua tendo que estar ligado.
 cloudflared tunnel --url http://localhost:3000
 ```
 
-### 3. Nuvem (Fly.io) — funciona sempre, independente do seu PC
+### 3. Nuvem (Fly.io) — **NO AR**
+
+**https://receitas-laura-gabriel.fly.dev**
+
+É esse o endereço que vai para o celular dela. Máquina em São Paulo (`gru`),
+banco num volume criptografado de 1 GB com snapshot diário, e a máquina
+suspende quando ninguém usa — acorda em segundos.
+
+Para trocar a senha:
+
+```bash
+flyctl secrets set APP_PASSWORD="a-senha-nova" --app receitas-laura-gabriel
+```
+
+Para publicar uma alteração depois de mexer no código:
+
+```bash
+flyctl deploy --app receitas-laura-gabriel --remote-only
+```
+
+#### Como foi montado
 
 O caminho definitivo. O `flyctl` já está instalado nesta máquina e o código já
 está no GitHub. **Não precisa de banco externo:** o Fly monta um disco
