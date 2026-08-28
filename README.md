@@ -70,6 +70,11 @@ O caminho definitivo. O `flyctl` já está instalado nesta máquina e o código 
 está no GitHub. **Não precisa de banco externo:** o Fly monta um disco
 persistente em `/data` e o SQLite mora lá, sobrevivendo a cada novo deploy.
 
+A imagem foi construída e testada localmente no Docker antes de subir: o
+yt-dlp funciona dentro dela (extraiu um link de verdade), o `sharp` gera as
+duas versões em WebP no Linux, a senha bloqueia a API, e os dados sobrevivem
+ao contêiner ser destruído e recriado sobre o mesmo volume.
+
 Estes comandos precisam de você — o login abre o navegador e a conta é sua:
 
 ```bash
